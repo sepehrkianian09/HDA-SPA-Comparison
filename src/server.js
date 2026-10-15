@@ -3,6 +3,10 @@ import { readFile } from "node:fs/promises";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import { products, searchProducts, createCart, addToCart, cartSummary } from "./store.js";
+import { createServer as createApplicationServer } from "./app-server.js";
+
+// Compatibility entry point. The implementation lives in app-server.js.
+export const createServer = createApplicationServer;
 
 const root = path.dirname(fileURLToPath(import.meta.url));
 const carts = new Map();
@@ -23,7 +27,7 @@ function hdaPage(url, cart) {
 }
 
 async function body(req) { let text = ""; for await (const chunk of req) text += chunk; return new URLSearchParams(text); }
-export function createServer() {
+function legacyCreateServer() {
   return http.createServer(async (req, res) => {
     try {
       const u = new URL(req.url, "http://localhost"); const session = req.headers.cookie?.match(/session=([^;]+)/)?.[1] || "anonymous";
@@ -42,4 +46,4 @@ export function createServer() {
     } catch (e) { res.writeHead(500); res.end("Server error"); }
   });
 }
-if (process.argv[1] === fileURLToPath(import.meta.url)) createServer().listen(3000, "127.0.0.1", () => console.log("SPA/HDA experiment: http://127.0.0.1:3000"));
+if (process.argv[1] === fileURLToPath(import.meta.url)) createApplicationServer().listen(3000, "127.0.0.1", () => console.log("SPA/HDA experiment: http://127.0.0.1:3000"));

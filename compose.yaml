@@ -8,3 +8,5 @@ services:
       - ${HOME}/.codex:/home/node/.codex
       - ${HOME}/.gemini:/home/node/.gemini
     working_dir: /workspace
+    ports:
+      - "127.0.0.1:4000:3000"
