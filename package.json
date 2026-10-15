@@ -8,6 +8,8 @@
     "test": "node --test",
     "test:e2e": "node tests/e2e.test.js",
     "metrics": "node scripts/collect-metrics.js",
-    "lighthouse": "lighthouse http://127.0.0.1:3000/spa/ --output=json --output-path=reports/lighthouse-spa.json"
+    "compare": "node scripts/compare-lighthouse.js",
+    "lighthouse": "lighthouse http://127.0.0.1:3000/spa/ --output=json --output-path=reports/lighthouse-spa.json",
+    "lighthouse:hda": "lighthouse http://127.0.0.1:3000/hda/ --output=json --output-path=reports/lighthouse-hda.json"
   }
 }
