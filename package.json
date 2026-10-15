@@ -1,0 +1,13 @@
+{
+  "name": "spa-hda-experiment",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "start": "node src/server.js",
+    "test": "node --test",
+    "test:e2e": "node tests/e2e.test.js",
+    "metrics": "node scripts/collect-metrics.js",
+    "lighthouse": "lighthouse http://127.0.0.1:3000/spa/ --output=json --output-path=reports/lighthouse-spa.json"
+  }
+}

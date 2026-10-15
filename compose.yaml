@@ -1,0 +1,10 @@
+services:
+  aalto-ai:
+    image: aalto-ai
+    stdin_open: true
+    tty: true
+    volumes:
+      - .:/workspace
+      - ${HOME}/.codex:/home/node/.codex
+      - ${HOME}/.gemini:/home/node/.gemini
+    working_dir: /workspace

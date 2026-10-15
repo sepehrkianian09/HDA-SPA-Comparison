@@ -1,0 +1,1 @@
+there are two files in here, `experiment_plan.md` and `next_steps.md`. these are for an experiment. Conduct the coding experiment for me. you might also use the additional resources mentioned in `prompt.txt`
