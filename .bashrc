@@ -1,0 +1,1 @@
+export AZURE_OPENAI_API_KEY="3e311ba7bc8b4a40a8aa837367c15cd3"
