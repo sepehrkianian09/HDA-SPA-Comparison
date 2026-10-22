@@ -1,0 +1,10 @@
+const test = require('node:test');
+const assert = require('node:assert/strict');
+const { server, cart } = require('./server');
+let base;
+test.before(async () => await new Promise(resolve => server.listen(0, () => { base = `http://127.0.0.1:${server.address().port}`; resolve(); })));
+test.after(() => server.close());
+test.afterEach(() => cart.clear());
+test('lists and searches products', async () => { assert.equal((await fetch(`${base}/api/products?q=stand`)).status, 200); assert.equal((await (await fetch(`${base}/api/products?q=stand`)).json()).length, 1); });
+test('adds and removes a cart item', async () => { const added = await (await fetch(`${base}/api/cart`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'lamp' }) })).json(); assert.equal(added.items, 1); const removed = await (await fetch(`${base}/api/cart/lamp`, { method: 'DELETE' })).json(); assert.equal(removed.items, 0); });
+test('rejects invalid cart input', async () => { assert.equal((await fetch(`${base}/api/cart`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'nope' }) })).status, 400); });

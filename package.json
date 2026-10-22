@@ -1,0 +1,12 @@
+{
+  "name": "spa-hda-experiment",
+  "version": "1.0.0",
+  "private": true,
+  "description": "A controlled comparison of React SPA and htmx HDA shopping flows",
+  "scripts": {
+    "start": "node step-6-applications/backend/server.js",
+    "test": "node --test step-6-applications/backend/*.test.js",
+    "metrics": "node step-7-metrics/scripts/collect-maintainability.js",
+    "metrics:compare": "node step-7-metrics/scripts/compare-metrics.js"
+  }
+}

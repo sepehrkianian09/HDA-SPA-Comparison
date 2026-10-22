@@ -1,0 +1,21 @@
+{
+  "generatedAt": "2026-10-22T08:24:24.012Z",
+  "rows": [
+    {
+      "file": "step-6-applications/backend/server.js",
+      "lines": 53,
+      "approximateCyclomaticComplexity": 20
+    },
+    {
+      "file": "step-3-frontend-stacks/spa/index.html",
+      "lines": 4,
+      "approximateCyclomaticComplexity": 2
+    },
+    {
+      "file": "step-3-frontend-stacks/hda/index.html",
+      "lines": 2,
+      "approximateCyclomaticComplexity": 2
+    }
+  ],
+  "fallow": "fallow command failed: 1"
+}
