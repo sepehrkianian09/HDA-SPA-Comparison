@@ -1,12 +1,38 @@
 const test = require('node:test');
 const assert = require('node:assert/strict');
 const { createServer } = require('./server');
+
 let base;
 let app;
-test.before(async () => { app = createServer(); await new Promise(resolve => app.server.listen(0, () => { base = `http://127.0.0.1:${app.server.address().port}`; resolve(); })); });
+
+async function request(path, options) { return fetch(`${base}${path}`, options); }
+async function jsonRequest(path, options) { return (await request(path, options)).json(); }
+async function startServer() { app = createServer(); await new Promise(resolve => app.server.listen(0, resolve)); base = `http://127.0.0.1:${app.server.address().port}`; }
+
+test.before(startServer);
 test.after(() => app.server.close());
 test.afterEach(() => app.cart.clear());
-test('lists and searches products', async () => { assert.equal((await fetch(`${base}/api/products?q=stand`)).status, 200); assert.equal((await (await fetch(`${base}/api/products?q=stand`)).json()).length, 1); });
-test('renders the HDA catalog and cart fragment', async () => { const products = await (await fetch(`${base}/hda/products`)).text(); assert.match(products, /Aluminum Desk Stand/); const cart = await (await fetch(`${base}/hda/cart`, { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: 'productId=stand' })).text(); assert.match(cart, /Cart: 1 item/); });
-test('adds and removes a cart item', async () => { const added = await (await fetch(`${base}/api/cart`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'lamp' }) })).json(); assert.equal(added.items, 1); const removed = await (await fetch(`${base}/api/cart/lamp`, { method: 'DELETE' })).json(); assert.equal(removed.items, 0); });
-test('rejects invalid cart input', async () => { assert.equal((await fetch(`${base}/api/cart`, { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'nope' }) })).status, 400); });
+
+test('lists and searches products', async () => {
+  const response = await request('/api/products?q=stand');
+  assert.equal(response.status, 200);
+  assert.equal((await response.json()).length, 1);
+});
+
+test('renders the HDA catalog and cart fragment', async () => {
+  assert.match(await (await request('/hda/products')).text(), /Aluminum Desk Stand/);
+  const cart = await request('/hda/cart', { method: 'POST', headers: { 'content-type': 'application/x-www-form-urlencoded' }, body: 'productId=stand' });
+  assert.match(await cart.text(), /Cart: 1 item/);
+});
+
+test('adds and removes a cart item', async () => {
+  const added = await jsonRequest('/api/cart', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'lamp' }) });
+  assert.equal(added.items, 1);
+  const removed = await jsonRequest('/api/cart/lamp', { method: 'DELETE' });
+  assert.equal(removed.items, 0);
+});
+
+test('rejects invalid cart input', async () => {
+  const response = await request('/api/cart', { method: 'POST', headers: { 'content-type': 'application/json' }, body: JSON.stringify({ productId: 'nope' }) });
+  assert.equal(response.status, 400);
+});

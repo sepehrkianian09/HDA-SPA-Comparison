@@ -1,3 +1,14 @@
 const { test, expect } = require('@playwright/test');
-test('SPA search and add flow', async ({ page }) => { await page.goto('http://127.0.0.1:3000/spa'); await page.getByPlaceholder('Try stand').fill('stand'); await expect(page.getByText('Aluminum Desk Stand')).toBeVisible(); await page.getByRole('button', { name: 'Add to cart' }).click(); await expect(page.getByText(/Cart: 1 item/)).toBeVisible(); });
-test('HDA search and add flow', async ({ page }) => { await page.goto('http://127.0.0.1:3000/hda'); await page.getByPlaceholder('Try stand').fill('stand'); await expect(page.getByText('Aluminum Desk Stand')).toBeVisible(); await page.getByRole('button', { name: 'Add to cart' }).click(); await expect(page.locator('#summary')).toContainText('1 item'); });
+const { searchAndAdd } = require('./support/shop-pages');
+
+test.describe('shopping flows', () => {
+  test('SPA search and add flow', async ({ page }) => {
+    await searchAndAdd(page, '/spa');
+    await expect(page.getByText(/Cart: 1 item/)).toBeVisible();
+  });
+
+  test('HDA search and add flow', async ({ page }) => {
+    await searchAndAdd(page, '/hda');
+    await expect(page.locator('#summary')).toContainText('1 item');
+  });
+});
