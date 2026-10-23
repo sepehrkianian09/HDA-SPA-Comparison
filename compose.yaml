@@ -10,3 +10,7 @@ services:
     working_dir: /workspace
     ports:
       - "127.0.0.1:4000:3000"
+    user: node
+    environment:
+      HOME: /home/node
+      AALTO_OPENAI: ${AALTO_OPENAI}
