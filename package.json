@@ -7,7 +7,7 @@
     "start": "node step-6-applications/backend/server.js",
     "test": "node --test step-6-applications/backend/*.test.js",
     "test:e2e": "playwright test --config=step-6-applications/e2e/playwright.config.js",
-    "metrics": "node step-7-metrics/scripts/collect-maintainability.js",
+    "metrics:code": "node step-7-metrics/scripts/collect-maintainability.js",
     "metrics:compare": "node step-7-metrics/scripts/compare-metrics.js",
     "metrics:ui": "node step-7-metrics/scripts/collect-ui-metrics.js",
     "metrics:ui:spa": "UI_TARGET=spa node step-7-metrics/scripts/collect-ui-metrics.js",
