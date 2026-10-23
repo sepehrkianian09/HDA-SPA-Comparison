@@ -4,8 +4,8 @@
 
 ## 1. Defining Metrics
 - **Code Maintainability:**
-  - Cyclomatic complexity, code duplication, test coverage, and module size.
-  - Tool: fallow
+  - example metrics: Cyclomatic complexity, code duplication, test coverage, and module size.
+  - Tool: anything that you would like to use. Just remember you have to evaluate both JS and HTML files.
 - **UI (Lighthouse) Metrics:**
   - First Contentful Paint, Largest Contentful Paint, Time to Interactive, Total Blocking Time, and Cumulative Layout Shift.
   - Tool: Lighthouse CLI.
@@ -68,3 +68,6 @@
 - **Reporting:**
   - For each set of metrics, develop a script that creates a comparison table from the gathered metrics.
 
+## 8. Refactoring
+- **Algorithm**: just refactor. But refactor any code, including codes related to metrics.
+- remember to not change the existing behavior.
