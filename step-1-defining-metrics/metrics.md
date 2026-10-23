@@ -2,7 +2,8 @@
 
 | Dimension | Measures | Collection method |
 |---|---|---|
-| Maintainability | Cyclomatic complexity, duplication, coverage, module size | Fallow CLI where available; Node test coverage for backend |
+| Maintainability | Cyclomatic complexity, normalized line duplication, source lines, and module size in bytes | Source scan for JS/HTML; Fallow CLI where available |
+| Coverage | Backend line, branch, and function coverage | Node's built-in test coverage |
 | UI performance | FCP, LCP, TTI, TBT, CLS | Lighthouse CLI, three runs per frontend, median reported |
 | Workability | API unit tests and browser journeys | `node --test` and Playwright |
 
