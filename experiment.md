@@ -5,8 +5,8 @@
 ## 1. Defining Metrics
 - **Code Maintainability:**
   - example metrics: Cyclomatic complexity, code duplication, test coverage, and module size.
-  - Tool: anything that you would like to use. Just remember you have to evaluate both JS and HTML files.
-- **UI (Lighthouse) Metrics:**
+  - Tool: A simple tool that can evaluate the desired metrics. And can be used for both JS and HTML files. You can use different tool for evaluating JS and HTML files.
+- **UI:**
   - First Contentful Paint, Largest Contentful Paint, Time to Interactive, Total Blocking Time, and Cumulative Layout Shift.
   - Tool: Lighthouse CLI.
 - **Testing:**
@@ -14,7 +14,7 @@
   - End-to-end tests using Playwright.
 
 ## 2. Selecting a Backend Stack
-- **Consistency:** Same backend for both SPA and HDA.
+- **Consistency:** develop separate backend for SPA and HDA. However, the logic code must be the same, ensuring performance consistency.
 - **Library:**
   - **Node.js:** Express leveraging RESTful or GraphQL endpoints.
 - **Features:**
@@ -54,19 +54,16 @@
 
 
 ## 6. Developing Two Separate Applications
-- **Shared Backend:** 
-  - Both applications will interact with the same API endpoints to ensure consistency in business logic and data operations.
 - **Testing:** 
   - Implement both unit tests for backend logic and Playwright tests for frontend interactions.
 
 
 ## 7. Gathering Metrics
 - **Tools & Methods:**
-  - Develop a script that uses Lighthouse CLI for gathering UI performance metrics.
-  - Develop a script that uses Fallow for gathering maintainability metrics.
-  - Combine unit and E2E test results to gauge overall workability.
-- **Reporting:**
+  - Develop a script for gathering UI performance metrics.
+  - Develop a script for gathering maintainability metrics.
   - For each set of metrics, develop a script that creates a comparison table from the gathered metrics.
+  - Combine unit and E2E test results to gauge overall workability.
 
 ## 8. Refactoring
 - **Algorithm**: just refactor. But refactor any code, including codes related to metrics.
