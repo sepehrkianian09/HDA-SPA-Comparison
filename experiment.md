@@ -1,6 +1,6 @@
 # Experiment Workflow: Comparing SPA and HDA Web Applications
 
-- For each step, create a separate folder in the project, and put the leading materials inside.
+- For each step, create a separate folder in the 'experiment' folder, and put the leading materials inside.
 
 ## 1. Defining Metrics
 - **Code Maintainability:**
