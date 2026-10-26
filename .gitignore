@@ -4,3 +4,5 @@
 reports
 step-7-metrics/results/*
 !step-7-metrics/results/.gitkeep
+
+experiment/*
