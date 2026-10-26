@@ -1,3 +1,0 @@
-# Gathering and reporting metrics
-
-Run `npm test`, `npm run test:e2e`, `npm run metrics`, `npm run metrics:ui`, then `npm run metrics:compare`. Maintainability includes source lines, module size, normalized duplicate lines, and approximate cyclomatic complexity for JS/HTML; backend line, branch, and function coverage is collected with Node. Lighthouse runs three times per page and reports the median FCP, LCP, TTI, TBT, and CLS. Use `npm run metrics:ui:spa` or `npm run metrics:ui:hda` to collect one page. If Fallow or Chrome/Chromium is unavailable, the report records an `unavailable` result instead of failing silently.
