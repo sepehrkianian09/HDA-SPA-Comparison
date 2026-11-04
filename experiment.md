@@ -4,8 +4,8 @@
 
 ## 1. Defining Metrics
 - **Code Maintainability:**
-  - example metrics: Cyclomatic complexity, code duplication, test coverage, and module size.
-  - Tool: A simple tool that can evaluate the desired metrics. And can be used for both JS and HTML files. You can use different tool for evaluating JS and HTML files.
+  - example metrics: Cyclomatic complexity, code duplication, and module size.
+  - Tool: scc 
 - **UI:**
   - First Contentful Paint, Largest Contentful Paint, Time to Interactive, Total Blocking Time, and Cumulative Layout Shift.
   - Tool: Lighthouse CLI.
